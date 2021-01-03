@@ -1,0 +1,36 @@
+/*
+Name-Vineet Malewar
+Roll N0 - B19EC022
+Leetcode Username-vintu
+*/
+
+class Solution {
+public:
+    bool canFormArray(vector<int>& arr, vector<vector<int>>& pieces) {
+        map <int, vector <int>> m;
+        int n = arr.size();
+        for(auto piece : pieces){
+            m[piece[0]] = piece;
+        }
+        
+        for(int i = 0; i<n ; i++){
+            auto it = m.find(arr[i]);
+            if(it != m.end()){
+                vector <int> p = m[arr[i]];
+                for(int num : p){
+                    if(num == arr[i]){ 
+                        i++;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+            else {
+                return false;
+            }
+            i--;
+        }
+        return true;
+    }
+};
