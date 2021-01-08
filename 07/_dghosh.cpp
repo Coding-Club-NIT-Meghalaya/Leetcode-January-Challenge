@@ -3,18 +3,24 @@
    LeetCode: _dghosh*/
    class Solution {
 public:
-    inline int findKthPositive(vector<int>& arr, int k) {
-        int pos,i=1;
-        vector<int> nos;
-        for(int j=0;j<arr.size();++j){
-            while(i!=arr[j]){
-                nos.push_back(i);
-                ++i;
+    int lengthOfLongestSubstring(string s) {
+        if(s.length()==0) return 0;
+        vector<char> v;
+        
+        v.push_back(s[0]);
+        int ans=1;
+        for(int i=1;i<s.length();++i){
+            if(find(v.begin(),v.end(),s[i])==v.end()) v.push_back(s[i]);
+            else{
+                v.erase(v.begin(),find(v.begin(),v.end(),s[i])+1);
+                v.push_back(s[i]);
+                
             }
-            ++i;
+           
+            ans=(v.size()>ans)?v.size():ans;
+            
         }
-       for(auto it:nos) cout<<it<<" ";
-       if(k>nos.size()) return arr[arr.size()-1]+(k-nos.size());
-       else return nos[k-1];
+       
+        return ans;
     }
 };
