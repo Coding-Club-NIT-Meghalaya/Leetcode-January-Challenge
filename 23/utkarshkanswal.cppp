@@ -1,0 +1,53 @@
+/* Name: Utkarsh Kumar
+Roll no: B18EC033
+Leetcode Username: utkarshkanswal
+*/
+
+class Solution {
+public:
+    vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
+        
+        vector<int> temp;
+        int n=mat.size();
+        int m=mat[0].size();
+        for(int i=0;i<m;i++)
+        {
+            int r=0,c=i;
+            while(r<n&&c<m)
+            {
+                temp.push_back(mat[r][c]);
+                r++;
+                c++;
+            }
+            sort(temp.rbegin(),temp.rend());
+            r=0,c=i;
+            while(r<n&&c<m)
+            {
+                mat[r][c]=temp.back();
+                temp.pop_back();
+                r++;
+                c++;
+            }
+        }
+        for(int i=1;i<n;i++)
+        {
+             int r=i,c=0;
+            while(r<n&&c<m)
+            {
+                temp.push_back(mat[r][c]);
+                r++;
+                c++;
+            }
+            sort(temp.rbegin(),temp.rend());
+            r=i,c=0;
+            while(r<n&&c<m)
+            {
+                mat[r][c]=temp.back();
+                temp.pop_back();
+                r++;
+                c++;
+            }
+        }
+        return mat;
+    }
+};
